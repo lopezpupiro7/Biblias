@@ -128,34 +128,10 @@
 
         // 🌟 GENERADOR INTELIGENTE DE REFLEXIONES DEVOCIONALES
         function generarReflexionInterna(lectura, nombreMes, dia) {
-            if (!lectura || lectura.trim() === "") {
+           
                 return "Hoy tienes un espacio reservado para asimilar la palabra de la semana. Usa este momento para repasar tus notas personales, orar y adorar al Padre en el secreto.";
-            }
-
-            if (lectura.includes("Gn")) {
-                return `Al estudiar hoy ${lectura}, volvemos al origen del diseño perfecto de Dios. Es un llamado directo a recordar Su soberanía creativa y a comprender que el mismo Dios que ordenó el caos al principio del mundo, tiene el control absoluto sobre nuestras vidas y familias hoy.`;
-            }
-            if (lectura.includes("Job")) {
-                return `La porción de hoy en ${lectura} nos sumerge en una profunda escuela de confianza radical. Job nos enseña que el carácter fiel de Dios permanece inalterable en medio del silencio, desafiándonos a desarrollar madurez para adorar aun cuando no comprendemos las circunstancias.`;
-            }
-            if (lectura.includes("Ex") || lectura.includes("Lv") || lectura.includes("Nm") || lectura.includes("Dt")) {
-                return `A través de tu lectura en ${lectura}, observamos el tierno pastoreo de Dios con Su pueblo en su trayecto por el desierto. Esto nos recuerda que Sus mandamientos e instrucciones no limitan nuestra vida, sino que actúan como un cerco de protección divina para guardarnos en santidad.`;
-            }
-            if (lectura.includes("Sal")) {
-                return `Hagamos de los versículos de ${lectura} nuestra oración en este día. Los salmos reflejan un alma transparente delante de su Creador; descansa en la certeza de que Dios escucha tu clamor sincero y se convierte en tu pronto auxilio y fortaleza.`;
-            }
-            if (lectura.includes("Mat") || lectura.includes("Mar") || lectura.includes("Lc") || lectura.includes("Jn")) {
-                return `La palabra de Cristo hoy en ${lectura} ilumina nuestra jornada. Meditar de cerca en los Evangelios nos ayuda a alinear nuestras acciones al modelo de nuestro Salvador, animándonos a ganar almas con amor y a consolidarnos como ministros fieles de Su gracia.`;
-            }
-            if (lectura.includes("Hch")) {
-                return `Al repasar ${lectura}, encendemos la pasión por el mover del Espíritu Santo en la iglesia unánime. Nos empuja a salir de nuestra zona de confort, testificar con denuedo y comprender que la iglesia avanza con poder cuando opera unida en oración.`;
-            }
-            if (lectura.includes("Ap")) {
-                return `Los pasajes de ${lectura} nos llenan de una gloriosa esperanza bienaventurada. Nos recuerdan el triunfo definitivo de Jesucristo sobre las tinieblas y nos llaman a mantenernos firmes, velando y esperando Su venida con un corazón limpio.`;
-            }
-
-            return `La palabra del Señor hoy en ${lectura} nos desafía a ser hacedores y no solo oidores. Cada libro leído en este preciso orden cronológico nos muestra la línea de redención que Dios ha trazado con paciencia a lo largo de la historia de la humanidad para alcanzarte hoy.`;
-        }
+          
+      }
 
         function actualizarDiasDisponibles() {
             const mesSelected = parseInt(selectMes.value);
