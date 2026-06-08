@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Plan de Lectura Bíblica Anual - SALEM</title>
+    <title>Plan de Lectura Bíblica Anual</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
         /* Estilos específicos para que al imprimir o guardar en PDF salga perfecto, ocultando la interfaz del buscador */
@@ -21,7 +21,7 @@
     <div class="max-w-6xl mx-auto px-4 py-8 no-print">
         <header class="text-center mb-10 border-b border-slate-800 pb-6">
             <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 tracking-tight">
-                Iglesia Evangélica Pentecostal Salem
+                CAPITULOS DEL DEL DIA
             </h1>
             <p class="text-slate-400 mt-2 font-medium tracking-wide uppercase text-sm">A Través de la Biblia en un Año</p>
             <blockquote class="text-xs italic text-slate-500 mt-3 max-w-xl mx-auto bg-slate-950/40 p-3 rounded-xl border border-slate-800/60">
@@ -66,11 +66,31 @@
                 </button>
             </div>
 
-            <!-- PANEL DERECHO: Tarjeta de Resultado -->
-            <div class="lg:col-span-2 bg-gradient-to-br from-slate-850 to-slate-900 p-8 rounded-2xl border border-slate-800 shadow-xl flex flex-col items-center justify-center text-center min-h-[300px]">
+            <!-- PANEL DERECHO: Tarjeta de Resultado con Espacio de Reflexión -->
+            <div class="lg:col-span-2 bg-gradient-to-br from-slate-850 to-slate-900 p-8 rounded-2xl border border-slate-800 shadow-xl flex flex-col items-center justify-start text-center min-h-[300px]">
                 <span class="text-xs font-bold uppercase tracking-widest text-indigo-400 bg-indigo-950/60 px-4 py-1.5 rounded-full border border-indigo-900/50">Lectura del Día</span>
-                <h3 class="text-4xl md:text-5xl font-black text-white mt-8 mb-4 tracking-tight" id="resultadoLectura">Gn. 1-2</h3>
-                <p class="text-slate-400 text-sm md:text-base font-medium" id="resultadoFecha">Cargando...</p>
+                <h3 class="text-4xl md:text-5xl font-black text-white mt-4 mb-2 tracking-tight" id="resultadoLectura">Gn. 1-2</h3>
+                <p class="text-slate-400 text-sm font-medium mb-6" id="resultadoFecha">Cargando...</p>
+                
+                <!-- 🌟 NUEVO ESPACIO: REFLEXIÓN DEVOCIONAL ASOCIADA -->
+                <div class="w-full text-left bg-slate-900/40 border border-slate-800/80 rounded-xl p-5 mt-2">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 flex items-center gap-1.5">
+                        <span>💡</span> Reflexión Guiada (Rhema)
+                    </h4>
+                    <p class="text-slate-300 text-sm leading-relaxed italic" id="resultadoReflexion">
+                        Evaluando las escrituras de hoy...
+                    </p>
+                </div>
+
+                <!-- 🌟 NUEVO ESPACIO INTERACTIVO: NOTAS PERSONALES -->
+                <div class="w-full text-left mt-4">
+                    <label class="block text-[11px] font-semibold uppercase text-slate-500 mb-1.5 tracking-wider">
+                        📝 Mis Notas y Meditación Personal:
+                    </label>
+                    <textarea id="notasUsuario" rows="3" 
+                              class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-emerald-500/50 transition-all placeholder:text-slate-600 resize-none"
+                              placeholder="Escribe aquí lo que Dios habla a tu vida hoy..."></textarea>
+                </div>
             </div>
         </div>
     </div>
@@ -103,6 +123,39 @@
         const selectDia = document.getElementById('selectDia');
         const resultadoLectura = document.getElementById('resultadoLectura');
         const resultadoFecha = document.getElementById('resultadoFecha');
+        const resultadoReflexion = document.getElementById('resultadoReflexion');
+        const notasUsuario = document.getElementById('notasUsuario');
+
+        // 🌟 GENERADOR INTELIGENTE DE REFLEXIONES DEVOCIONALES
+        function generarReflexionInterna(lectura, nombreMes, dia) {
+            if (!lectura || lectura.trim() === "") {
+                return "Hoy tienes un espacio reservado para asimilar la palabra de la semana. Usa este momento para repasar tus notas personales, orar y adorar al Padre en el secreto.";
+            }
+
+            if (lectura.includes("Gn")) {
+                return `Al estudiar hoy ${lectura}, volvemos al origen del diseño perfecto de Dios. Es un llamado directo a recordar Su soberanía creativa y a comprender que el mismo Dios que ordenó el caos al principio del mundo, tiene el control absoluto sobre nuestras vidas y familias hoy.`;
+            }
+            if (lectura.includes("Job")) {
+                return `La porción de hoy en ${lectura} nos sumerge en una profunda escuela de confianza radical. Job nos enseña que el carácter fiel de Dios permanece inalterable en medio del silencio, desafiándonos a desarrollar madurez para adorar aun cuando no comprendemos las circunstancias.`;
+            }
+            if (lectura.includes("Ex") || lectura.includes("Lv") || lectura.includes("Nm") || lectura.includes("Dt")) {
+                return `A través de tu lectura en ${lectura}, observamos el tierno pastoreo de Dios con Su pueblo en su trayecto por el desierto. Esto nos recuerda que Sus mandamientos e instrucciones no limitan nuestra vida, sino que actúan como un cerco de protección divina para guardarnos en santidad.`;
+            }
+            if (lectura.includes("Sal")) {
+                return `Hagamos de los versículos de ${lectura} nuestra oración en este día. Los salmos reflejan un alma transparente delante de su Creador; descansa en la certeza de que Dios escucha tu clamor sincero y se convierte en tu pronto auxilio y fortaleza.`;
+            }
+            if (lectura.includes("Mat") || lectura.includes("Mar") || lectura.includes("Lc") || lectura.includes("Jn")) {
+                return `La palabra de Cristo hoy en ${lectura} ilumina nuestra jornada. Meditar de cerca en los Evangelios nos ayuda a alinear nuestras acciones al modelo de nuestro Salvador, animándonos a ganar almas con amor y a consolidarnos como ministros fieles de Su gracia.`;
+            }
+            if (lectura.includes("Hch")) {
+                return `Al repasar ${lectura}, encendemos la pasión por el mover del Espíritu Santo en la iglesia unánime. Nos empuja a salir de nuestra zona de confort, testificar con denuedo y comprender que la iglesia avanza con poder cuando opera unida en oración.`;
+            }
+            if (lectura.includes("Ap")) {
+                return `Los pasajes de ${lectura} nos llenan de una gloriosa esperanza bienaventurada. Nos recuerdan el triunfo definitivo de Jesucristo sobre las tinieblas y nos llaman a mantenernos firmes, velando y esperando Su venida con un corazón limpio.`;
+            }
+
+            return `La palabra del Señor hoy en ${lectura} nos desafía a ser hacedores y no solo oidores. Cada libro leído en este preciso orden cronológico nos muestra la línea de redención que Dios ha trazado con paciencia a lo largo de la historia de la humanidad para alcanzarte hoy.`;
+        }
 
         function actualizarDiasDisponibles() {
             const mesSelected = parseInt(selectMes.value);
@@ -123,12 +176,17 @@
             const nombreMes = mesesNombres[mes - 1];
             const lectura = diccionarioLecturas[mes][dia - 1];
 
+            // Limpiar o recuperar las notas para ese día específico si se desea (opcional)
+            notasUsuario.value = ""; 
+
             if (!lectura || lectura.trim() === "") {
                 resultadoLectura.innerText = "☕ Reflexión Libre";
                 resultadoFecha.innerText = `Día de descanso en ${nombreMes}`;
+                resultadoReflexion.innerText = generarReflexionInterna("", nombreMes, dia);
             } else {
                 resultadoLectura.innerText = lectura;
                 resultadoFecha.innerText = `Lectura para el día ${dia} de ${nombreMes}`;
+                resultadoReflexion.innerText = generarReflexionInterna(lectura, nombreMes, dia);
             }
         }
 
@@ -143,6 +201,8 @@
                 renderizarLectura(dia, mes);
             }
         });
+
+        document.getElementById('inputFechaCompleta')
 
         function actualizarDesdeSelects() {
             const mes = parseInt(selectMes.value);
