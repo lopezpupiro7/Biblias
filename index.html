@@ -122,7 +122,7 @@
             
             if (typeof obtenerLecturaDelDia !== 'function') {
                 resultadoLectura.innerText = "---";
-                resultadoReflexion.innerText = "Error crítico: El archivo datos_lecturas.js está corrupto o falta una coma.";
+                resultadoReflexion.innerText = "Error cargando la base de datos externa.";
                 return;
             }
 
@@ -177,6 +177,7 @@
                 <p style="font-size: 10px; italic; color: #718096; max-w: 600px; margin: 5px auto;">“Vivir como una familia unánime que glorifica a Jesucristo ganando almas para que se conviertan en miembros maduros y ministros fieles”</p>
             </div>`;
 
+            // SECCIÓN 1er Semestre: Enero a Junio
             html += `<h2 style="color: #1b365d; border-bottom: 2px solid #1b365d; margin-top: 20px; font-size: 14px; font-weight: bold;">PRIMER SEMESTRE (ENERO - JUNIO)</h2>
             <table style="width: 100%; border-collapse: collapse; font-size: 9px; margin-top: 5px; margin-bottom: 30px;">
                 <thead><tr style="background-color: #1b365d; color: white;"><th style="border: 1px solid #cbcbcb; padding: 4px; text-align: center; width: 5%;">Día</th>`;
@@ -192,6 +193,7 @@
             }
             html += `</tbody></table><div class="page-break"></div>`;
 
+            // SECCIÓN 2do Semestre: Julio a Diciembre
             html += `<div style="text-align: center; margin-bottom: 20px;" class="print-only-header">
                 <h1 style="color: #1b365d; font-size: 24px; font-weight: bold;">Iglesia Evangélica Pentecostal Salem</h1>
             </div>
@@ -213,7 +215,7 @@
             container.innerHTML = html;
         }
 
-        // Evento seguro de inicio coordinado
+        // Ejecución limpia una vez que los archivos JS están cargados en memoria
         window.addEventListener('load', () => {
             const hoy = new Date();
             selectMes.value = hoy.getMonth() + 1;
