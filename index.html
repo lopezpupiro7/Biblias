@@ -6,6 +6,7 @@
     <title>Plan de Lectura Bíblica Anual</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> 
     <style>
+        /* Estilos específicos para que al imprimir o guardar en PDF salga perfecto, ocultando la interfaz del buscador */
         @media print {
             body { background-color: white !important; color: black !important; }
             .no-print { display: none !important; }
@@ -13,10 +14,12 @@
             .page-break { page-break-after: always; }
         }
     </style>
+    <!-- Cargamos el script externo obligatoriamente al inicio del ciclo de vida del DOM -->
     <script src="datos_lecturas.js"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen antialiased selection:bg-blue-500 selection:text-white">
 
+    <!-- CONTENIDO INTERACTIVO (Se oculta automáticamente al generar el PDF Anual) -->
     <div class="max-w-6xl mx-auto px-4 py-8 no-print">
         <header class="text-center mb-10 border-b border-slate-800 pb-6">
             <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 tracking-tight">
@@ -29,10 +32,12 @@
         </header>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- PANEL IZQUIERDO: Selectores -->
             <div class="bg-slate-850 p-6 rounded-2xl border border-slate-800 shadow-xl flex flex-col justify-between space-y-6">
                 <div>
                     <h2 class="text-lg font-bold text-blue-400 mb-4 flex items-center gap-2"><span>📅</span> Buscador de Fecha</h2>
                     
+                    <!-- Formato Fecha Nativo -->
                     <div class="mb-4 p-4 bg-slate-900/60 rounded-xl border border-slate-800">
                         <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 tracking-wider">Opción 1: Calendario / Fecha</label>
                         <input type="date" id="inputFechaCompleta" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-center font-bold text-white focus:outline-none focus:border-blue-500 cursor-pointer">
@@ -40,6 +45,7 @@
 
                     <div class="text-center text-xs font-bold text-slate-600 my-2">O BIEN</div>
 
+                    <!-- Meses con Nombre -->
                     <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-4">
                         <label class="block text-xs font-semibold uppercase text-slate-400 tracking-wider">Opción 2: Listas Desplegables</label>
                         <div>
@@ -56,10 +62,174 @@
                     </div>
                 </div>
 
+                <!-- BOTÓN PARA GENERAR EL PLAN ANUAL COMPLETO EN PDF -->
                 <button onclick="window.print()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-indigo-950/40 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer">
                     <span>📄</span> Descargar Plan Anual Completo (PDF)
                 </button>
             </div>
 
+            <!-- PANEL DERECHO: Tarjeta de Resultado con Espacio de Reflexión -->
             <div class="lg:col-span-2 bg-gradient-to-br from-slate-850 to-slate-900 p-8 rounded-2xl border border-slate-800 shadow-xl flex flex-col items-center justify-start text-center min-h-[300px]">
-                <span class="text-xs font-bold uppercase tracking-widest text-indigo-400 bg-indigo-950/
+                <span class="text-xs font-bold uppercase tracking-widest text-indigo-400 bg-indigo-950/60 px-4 py-1.5 rounded-full border border-indigo-900/50">Lectura del Día</span>
+                <h3 class="text-4xl md:text-5xl font-black text-white mt-4 mb-2 tracking-tight" id="resultadoLectura">---</h3>
+                <p class="text-slate-400 text-sm font-medium mb-6" id="resultadoFecha">Cargando...</p>
+                
+                <!-- ESPACIO: REFLEXIÓN DEVOCIONAL ASOCIADA -->
+                <div class="w-full text-left bg-slate-900/40 border border-slate-800/80 rounded-xl p-5 mt-2">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 flex items-center gap-1.5">
+                        <span>💡</span> Reflexión del Pasaje
+                    </h4>
+                    <p class="text-slate-300 text-sm leading-relaxed italic whitespace-pre-line" id="resultadoReflexion">
+                        <!-- Cargado dinámicamente -->
+                    </p>
+                </div>
+
+                <!-- ESPACIO INTERACTIVO: NOTAS PERSONALES -->
+                <div class="w-full text-left mt-4">
+                    <label class="block text-[11px] font-semibold uppercase text-slate-500 mb-1.5 tracking-wider">
+                        📝 Mis Notas y Meditación Personal:
+                    </label>
+                    <textarea id="notasUsuario" rows="3" 
+                              class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-slate-300 focus:outline-none focus:border-emerald-500/50 transition-all placeholder:text-slate-600 resize-none"
+                              placeholder="Escribe aquí lo que Dios habla a tu vida hoy..."></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÁREA DE IMPRESIÓN (Oculta en pantalla, contiene TODO el año completo para el PDF) -->
+    <div class="hidden print-area p-4 text-slate-900 bg-white">
+        <div id="tablas-impresion-container"></div>
+    </div>
+
+    <script>
+        const mesesNombres = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        
+        const inputFechaCompleta = document.getElementById('inputFechaCompleta');
+        const selectMes = document.getElementById('selectMes');
+        const selectDia = document.getElementById('selectDia');
+        const resultadoLectura = document.getElementById('resultadoLectura');
+        const resultadoFecha = document.getElementById('resultadoFecha');
+        const resultadoReflexion = document.getElementById('resultadoReflexion');
+        const notasUsuario = document.getElementById('notasUsuario');
+
+        function actualizarDiasDisponibles() {
+            const mesSelected = parseInt(selectMes.value);
+            // Validación de seguridad por si el objeto del mes no está definido en el JS externo
+            const diasEnMes = diccionarioLecturas[mesSelected] ? diccionarioLecturas[mesSelected].length : 30;
+            const diaAnterior = parseInt(selectDia.value) || 1;
+            
+            selectDia.innerHTML = "";
+            for (let i = 1; i <= diasEnMes; i++) {
+                let opt = document.createElement('option');
+                opt.value = i;
+                opt.innerText = `Día ${i}`;
+                selectDia.appendChild(opt);
+            }
+            selectDia.value = diaAnterior <= diasEnMes ? diaAnterior : 1;
+        }
+
+        function renderizarLectura(dia, mes) {
+            const nombreMes = mesesNombres[mes - 1];
+            
+            // Llamamos a la función global del script externo
+            const itemLectura = obtenerLecturaDelDia(mes, dia);
+
+            notasUsuario.value = ""; 
+
+            if (!itemLectura || !itemLectura.capitulos || itemLectura.capitulos.trim() === "" || itemLectura.capitulos === "Reflexión") {
+                resultadoLectura.innerText = "☕ Reflexión Libre";
+                resultadoFecha.innerText = `Día de descanso en ${nombreMes}`;
+                resultadoReflexion.innerText = (itemLectura && itemLectura.reflexion && itemLectura.reflexion.trim() !== "") 
+                    ? itemLectura.reflexion 
+                    : "No hay lectura asignada para hoy. Buen día para repasar apuntes antiguos y meditar.";
+            } else {
+                resultadoLectura.innerText = itemLectura.capitulos;
+                resultadoFecha.innerText = `Lectura para el día ${dia} de ${nombreMes}`;
+                resultadoReflexion.innerText = itemLectura.reflexion && itemLectura.reflexion.trim() !== "" 
+                    ? itemLectura.reflexion 
+                    : "No se ha añadido una reflexión manual para este bloque de capítulos.";
+            }
+        }
+
+        inputFechaCompleta.addEventListener('change', function() {
+            if (this.value) {
+                const parts = this.value.split('-');
+                const mes = parseInt(parts[1]);
+                const dia = parseInt(parts[2]);
+                selectMes.value = mes;
+                actualizarDiasDisponibles();
+                selectDia.value = dia;
+                renderizarLectura(dia, mes);
+            }
+        });
+
+        function actualizarDesdeSelects() {
+            const mes = parseInt(selectMes.value);
+            const dia = parseInt(selectDia.value);
+            const añoBase = new Date().getFullYear();
+            inputFechaCompleta.value = `${añoBase}-${mes < 10 ? '0'+mes : mes}-${dia < 10 ? '0'+dia : dia}`;
+            renderizarLectura(dia, mes);
+        }
+
+        selectMes.addEventListener('change', () => { actualizarDiasDisponibles(); actualizarDesdeSelects(); });
+        selectDia.addEventListener('change', actualizarDesdeSelects);
+
+        // CONSTRUCCIÓN DEL REPORTE ANUAL COMPLETO (LOS 12 MESES) PARA EL PDF
+        function inicializarTablasImpresion() {
+            const container = document.getElementById('tablas-impresion-container');
+            
+            let html = `<div style="text-align: center; margin-bottom: 20px;">
+                <h1 style="color: #1b365d; font-size: 24px; font-weight: bold;">Iglesia Evangélica Pentecostal Salem</h1>
+                <p style="font-size: 12px; font-weight: bold; text-transform: uppercase; color: #4a5568;">Plan Anual Completo de Lectura Cronológica</p>
+                <p style="font-size: 10px; italic; color: #718096; max-w: 600px; margin: 5px auto;">“Vivir como una familia unánime que glorifica a Jesucristo ganando almas para que se conviertan en miembros maduros y ministros fieles”</p>
+            </div>`;
+
+            // SECCIÓN 1er Semestre: Enero a Junio
+            html += `<h2 style="color: #1b365d; border-bottom: 2px solid #1b365d; margin-top: 20px; font-size: 14px; font-weight: bold;">PRIMER SEMESTRE (ENERO - JUNIO)</h2>
+            <table style="width: 100%; border-collapse: collapse; font-size: 9px; margin-top: 5px; margin-bottom: 30px;">
+                <thead><tr style="background-color: #1b365d; color: white;"><th style="border: 1px solid #cbcbcb; padding: 4px; text-align: center; width: 5%;">Día</th>`;
+            for(let i=0; i<6; i++) html += `<th style="border: 1px solid #cbcbcb; padding: 4px; text-align: center; width: 15.8%;">${mesesNombres[i].toUpperCase()}</th>`;
+            html += `</tr></thead><tbody>`;
+            for(let d=0; d<31; d++){
+                html += `<tr ${d%2===1?'style="background-color: #f4f7fa;"':''}><td style="border: 1px solid #cbcbcb; padding: 3px; text-align: center; font-weight: bold;">${d+1}</td>`;
+                for(let m=1; m<=6; m++) {
+                    const item = diccionarioLecturas[m] && diccionarioLecturas[m][d];
+                    html += `<td style="border: 1px solid #cbcbcb; padding: 3px; text-align: center;">${item ? item.capitulos : ""}</td>`;
+                }
+                html += `</tr>`;
+            }
+            html += `</tbody></table><div class="page-break"></div>`;
+
+            // SECCIÓN 2do Semestre: Julio a Diciembre
+            html += `<div style="text-align: center; margin-bottom: 20px;" class="print-only-header">
+                <h1 style="color: #1b365d; font-size: 24px; font-weight: bold;">Iglesia Evangélica Pentecostal Salem</h1>
+            </div>
+            <h2 style="color: #1b365d; border-bottom: 2px solid #1b365d; margin-top: 10px; font-size: 14px; font-weight: bold;">SEGUNDO SEMESTRE (JULIO - DICIEMBRE)</h2>
+            <table style="width: 100%; border-collapse: collapse; font-size: 9px; margin-top: 5px;">
+                <thead><tr style="background-color: #1b365d; color: white;"><th style="border: 1px solid #cbcbcb; padding: 4px; text-align: center; width: 5%;">Día</th>`;
+            for(let i=6; i<12; i++) html += `<th style="border: 1px solid #cbcbcb; padding: 4px; text-align: center; width: 15.8%;">${mesesNombres[i].toUpperCase()}</th>`;
+            html += `</tr></thead><tbody>`;
+            for(let d=0; d<31; d++){
+                html += `<tr ${d%2===1?'style="background-color: #f4f7fa;"':''}><td style="border: 1px solid #cbcbcb; padding: 3px; text-align: center; font-weight: bold;">${d+1}</td>`;
+                for(let m=7; m<=12; m++) {
+                    const item = diccionarioLecturas[m] && diccionarioLecturas[m][d];
+                    html += `<td style="border: 1px solid #cbcbcb; padding: 3px; text-align: center;">${item ? item.capitulos : ""}</td>`;
+                }
+                html += `</tr>`;
+            }
+            html += `</tbody></table>`;
+
+            container.innerHTML = html;
+        }
+
+        // Carga inicial sincronizada
+        const hoy = new Date();
+        selectMes.value = hoy.getMonth() + 1;
+        actualizarDiasDisponibles();
+        selectDia.value = hoy.getDate();
+        actualizarDesdeSelects();
+        inicializarTablasImpresion();
+    </script>
+</body>
+</html>
