@@ -231,7 +231,19 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Dt. 1-3", reflexion: "" }
+        { capitulos: "Dt. 1-3", reflexion: "" },
+
+
+
+        { capitulos: "", reflexion: "" },
+
+
+
+        { capitulos: "", reflexion: "" },
+
+
+
+        { capitulos: "", reflexion: "" }
     ],
     3: [
         { capitulos: "Dt. 4-6", reflexion: "" },
@@ -449,11 +461,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Sal. 40-42", reflexion: "" },
+        { capitulos: "Sal. 40-42", reflexion: "" },Logos: [""],
 
 
 
-        { capitulos: "Sal. 43-45", reflexion: "" },
+                { capitulos: "Sal. 43-45", reflexion: "" },
 
 
 
@@ -473,7 +485,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Sal. 58-60", reflexion: "" }
+        { capitulos: "Sal. 58-60", reflexion: "" },
+
+
+
+        { capitulos: "", reflexion: "" }
     ],
     5: [
         { capitulos: "Sal. 61-63", reflexion: "" },
@@ -508,7 +524,7 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Sal. 85-87", reflexion: "" }, openings: [""],
+        { capitulos: "Sal. 85-87", reflexion: "" },
 
 
 
@@ -588,11 +604,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Sal. 145-147", reflexion: "" },
+        { capitulos: "Sal. 145-147", reflexion: "" },Logos: [""],
 
 
 
-        { capitulos: "Sal. 148-150", reflexion: "" },
+                { capitulos: "Sal. 148-150", reflexion: "" },
 
 
 
@@ -715,7 +731,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Am. 7-9", reflexion: "" }
+        { capitulos: "Am. 7-9", reflexion: "" },
+
+
+
+        { capitulos: "", reflexion: "" }
     ],
     7: [
         { capitulos: "2 R. 15-17", reflexion: "" },
@@ -806,7 +826,7 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Is. 49-51", reflexion: "" }, // Corregido: removido duplicado incorrecto de Junio
+        { capitulos: "Is. 49-51", reflexion: "" },
 
 
 
@@ -814,11 +834,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Is. 55-57", reflexion: "" },
+        { capitulos: "Is. 55-57", reflexion: "" },Logos: [""],
 
 
 
-        { capitulos: "Is. 58-60", reflexion: "" },
+                { capitulos: "Is. 58-60", reflexion: "" },
 
 
 
@@ -980,11 +1000,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "2 Cr. 17-19", reflexion: "" },
+        { capitulos: "2 Cr. 17-19", reflexion: "" },Logos: [""],
 
 
 
-        { capitulos: "2 Cr. 20-22", reflexion: "" },
+                { capitulos: "2 Cr. 20-22", reflexion: "" },
 
 
 
@@ -1012,11 +1032,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Ez. 8-11", reflexion: "" },
+        { capitulos: "Ez. 8-11", reflexion: "" },Logos: [""],
 
 
 
-        { capitulos: "Ez. 12-14", reflexion: "" },
+                { capitulos: "Ez. 12-14", reflexion: "" },
 
 
 
@@ -1080,7 +1100,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Esd. 1-3", reflexion: "" }
+        { capitulos: "Esd. 1-3", reflexion: "" },
+
+
+
+        { capitulos: "", reflexion: "" }
     ],
     10: [
         { capitulos: "Esd. 4-7", reflexion: "" },
@@ -1294,7 +1318,7 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Hch. 20:2; Ro. 1-4", reflexion: "" }, // Corregido el error de sintaxis que congelaba la app
+        { capitulos: "Hch. 20:2; Ro. 1-4", reflexion: "" },
 
 
 
@@ -1322,7 +1346,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Ef. 1-3", reflexion: "" }
+        { capitulos: "Ef. 1-3", reflexion: "" },
+
+
+
+        { capitulos: "", reflexion: "" }
     ],
     12: [
         { capitulos: "Ef. 4-6", reflexion: "" },
@@ -1449,7 +1477,7 @@ const diccionarioLecturas = {
     ]
 };
 
-// Función para llamar los datos de forma limpia y segura desde el HTML externo
+// Función para llamar las lecturas y reflexiones de forma segura desde el archivo HTML externo
 function obtenerLecturaDelDia(mes, dia) {
     if (diccionarioLecturas[mes] && diccionarioLecturas[mes][dia - 1]) {
         return diccionarioLecturas[mes][dia - 1];
