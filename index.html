@@ -14,7 +14,7 @@
             .page-break { page-break-after: always; }
         }
     </style>
-    <!-- Cargamos el script externo obligatoriamente al inicio del ciclo de vida del DOM -->
+    <!-- Cargamos el script externo al inicio del ciclo de vida del DOM -->
     <script src="datos_lecturas.js"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen antialiased selection:bg-blue-500 selection:text-white">
@@ -115,8 +115,8 @@
 
         function actualizarDiasDisponibles() {
             const mesSelected = parseInt(selectMes.value);
-            // Validación de seguridad por si el objeto del mes no está definido en el JS externo
-            const diasEnMes = diccionarioLecturas[mesSelected] ? diccionarioLecturas[mesSelected].length : 30;
+            // Comprobación de seguridad por si el script externo tarda un milisegundo extra en indexarse
+            const diasEnMes = (typeof diccionarioLecturas !== 'undefined' && diccionarioLecturas[mesSelected]) ? diccionarioLecturas[mesSelected].length : 31;
             const diaAnterior = parseInt(selectDia.value) || 1;
             
             selectDia.innerHTML = "";
@@ -132,12 +132,16 @@
         function renderizarLectura(dia, mes) {
             const nombreMes = mesesNombres[mes - 1];
             
-            // Llamamos a la función global del script externo
-            const itemLectura = obtenerLecturaDelDia(mes, dia);
+            if (typeof obtenerLecturaDelDia === 'undefined') {
+                resultadoLectura.innerText = "---";
+                resultadoReflexion.innerText = "Cargando base de datos bíblica...";
+                return;
+            }
 
+            const itemLectura = obtenerLecturaDelDia(mes, dia);
             notasUsuario.value = ""; 
 
-            if (!itemLectura || !itemLectura.capitulos || itemLectura.capitulos.trim() === "" || itemLectura.capitulos === "Reflexión") {
+            if (!itemLectura || !itemLectura.capitulos || itemLectura.capitulos.trim() === "") {
                 resultadoLectura.innerText = "☕ Reflexión Libre";
                 resultadoFecha.innerText = `Día de descanso en ${nombreMes}`;
                 resultadoReflexion.innerText = (itemLectura && itemLectura.reflexion && itemLectura.reflexion.trim() !== "") 
@@ -175,8 +179,8 @@
         selectMes.addEventListener('change', () => { actualizarDiasDisponibles(); actualizarDesdeSelects(); });
         selectDia.addEventListener('change', actualizarDesdeSelects);
 
-        // CONSTRUCCIÓN DEL REPORTE ANUAL COMPLETO (LOS 12 MESES) PARA EL PDF
         function inicializarTablasImpresion() {
+            if (typeof diccionarioLecturas === 'undefined') return;
             const container = document.getElementById('tablas-impresion-container');
             
             let html = `<div style="text-align: center; margin-bottom: 20px;">
@@ -223,13 +227,15 @@
             container.innerHTML = html;
         }
 
-        // Carga inicial sincronizada
-        const hoy = new Date();
-        selectMes.value = hoy.getMonth() + 1;
-        actualizarDiasDisponibles();
-        selectDia.value = hoy.getDate();
-        actualizarDesdeSelects();
-        inicializarTablasImpresion();
+        // El truco está aquí: Sincronizar la carga con la inicialización nativa del navegador
+        window.addEventListener('load', () => {
+            const hoy = new Date();
+            selectMes.value = hoy.getMonth() + 1;
+            actualizarDiasDisponibles();
+            selectDia.value = hoy.getDate();
+            actualizarDesdeSelects();
+            inicializarTablasImpresion();
+        });
     </script>
 </body>
 </html>
