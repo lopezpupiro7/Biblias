@@ -650,10 +650,8 @@ const diccionarioLecturas = {
         { capitulos: "Ec. 4-6", reflexion: `Las personas llenas de ira llevan dolor y tristeza, el que se afana por tener y tener 
             no tiene más que una vida vacía y dolor. El que piensa que puede solo su orgullo, su soberbia los unde, por eso el predicador nos aconseja
             en no caminar solos, en estar acompañado, en estar unidos primeramente con Dios y tambien con nuestros hermanos.
-            
             A Dios no le sorprende, ni le maravilla el que habla mucho, el que se muestra ante el diciendo soy bueno o soy sin pecado, pues Dios es soberano,
             Dios ama al humilde, al que reconoce su error, al que no alega o justifica su pecado sino que reconoce que por su voluntad a fallado.
-            
             El hombre que tiene de más no disfruta ni agradece lo que tiene, sin embargo el que tiene lo suficiente alaba a Dios, la vanidad es aquello 
             que sobreestimula nuestros placeres pero nos dañan, lo suficiente es lo que esta equilibrado no daña, ni destruye, es lo que Dios nos da.` },
 
