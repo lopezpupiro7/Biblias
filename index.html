@@ -6,6 +6,7 @@
     <title>Plan de Lectura Bíblica Anual</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> 
     <style>
+        /* Estilos específicos para que al imprimir o guardar en PDF salga perfecto, ocultando la interfaz del buscador */
         @media print {
             body { background-color: white !important; color: black !important; }
             .no-print { display: none !important; }
@@ -119,9 +120,9 @@
         function renderizarLectura(dia, mes) {
             const nombreMes = mesesNombres[mes - 1];
             
-            if (typeof obtenerLecturaDelDia === 'undefined' || obtenerLecturaDelDia === null) {
+            if (typeof obtenerLecturaDelDia !== 'function') {
                 resultadoLectura.innerText = "---";
-                resultadoReflexion.innerText = "Error cargando la base de datos externa.";
+                resultadoReflexion.innerText = "Error crítico: El archivo datos_lecturas.js está corrupto o falta una coma.";
                 return;
             }
 
@@ -212,8 +213,8 @@
             container.innerHTML = html;
         }
 
-        // Evento DOMContentLoaded seguro para iniciar la sincronía
-        document.addEventListener('DOMContentLoaded', () => {
+        // Evento seguro de inicio coordinado
+        window.addEventListener('load', () => {
             const hoy = new Date();
             selectMes.value = hoy.getMonth() + 1;
             actualizarDiasDisponibles();
