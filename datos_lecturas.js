@@ -485,11 +485,7 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Sal. 58-60", reflexion: "" },
-
-
-
-        { capitulos: "", reflexion: "" }
+        { capitulos: "Sal. 58-60", reflexion: "" }
     ],
     5: [
         { capitulos: "Sal. 61-63", reflexion: "" },
@@ -846,7 +842,7 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Is. 64-66", reflexion: "" },
+                { capitulos: "Is. 64-66", reflexion: "" },
 
 
 
@@ -1000,7 +996,7 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "2 Cr. 17-19", reflexion: "" },
+                { capitulos: "2 Cr. 17-19", reflexion: "" },
 
 
 
@@ -1068,11 +1064,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Ez. 37-39", reflexion: "" },Logos: [""],
+        { capitulos: "Ez. 37-39", reflexion: "" },
 
 
 
-                { capitulos: "Ez. 40-42", reflexion: "" },
+        { capitulos: "Ez. 40-42", reflexion: "" },
 
 
 
@@ -1246,7 +1242,7 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Hch. 6-9", reflexion: "" },
+                { capitulos: "Hch. 6-9", reflexion: "" },
 
 
 
@@ -1266,11 +1262,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Gá. 1-3", reflexion: "" },Logos: [""],
+        { capitulos: "Gá. 1-3", reflexion: "" },
 
 
 
-                { capitulos: "Gá. 4-6", reflexion: "" },
+        { capitulos: "Gá. 4-6", reflexion: "" },
 
 
 
@@ -1447,6 +1443,33 @@ const diccionarioLecturas = {
 
         { capitulos: "Ap. 19-22", reflexion: "" },
 
+
+
+        { capitulos: "Reflexión", reflexion: "" },
+
+
+
+        { capitulos: "Reflexión", reflexion: "" },
+
+
+
+        { capitulos: "Reflexión", reflexion: "" },
+
+
+
+        { capitulos: "Reflexión", reflexion: "" },
+
+
+
+        { capitulos: "Reflexión", reflexion: "" },
+
+
+
+        { capitulos: "Reflexión", reflexion: "" },
+
+
+
+        { capitulos: "Estudio Libre", reflexion: "" }
     ]
 };
 
