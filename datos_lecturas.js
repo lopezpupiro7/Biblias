@@ -1417,7 +1417,7 @@ const diccionarioLecturas = {
 
         { capitulos: "Ap. 4-6", reflexion: `` },
 
-
+ 
 
         { capitulos: "Ap. 7-9", reflexion: `` },
 
