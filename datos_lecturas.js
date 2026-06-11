@@ -636,15 +636,26 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Ec. 1-3", reflexion: `Todo es vanidad, debemos entender que todo es temporal, que solo Dios es eterno, que el afán por pensar en el mañana o acumular lo innecesario solo produce aflicción, más Dios produce paz, Dios es eterno y el hecho de buscarlo no nos llena de afán sino la seguridad de estar completos.
+        { capitulos: "Ec. 1-3", reflexion: `Todo es vanidad, debemos entender que todo es temporal, que solo Dios es eterno, que el afán por pensar en el mañana o acumular lo innecesario solo produce aflicción, más Dios produce paz, Dios es eterno y el hecho de buscarlo no nos 
+            llena de afán sino la seguridad de estar completos.
+      \n\nLa aflicción de Espíritu es hecha por la vanidad, la vanidad lleva sobreesfuerzo y 
+      la necesidad vacía de recoger y acumular. Sin embargo el que confía en Dios y agradece lo que tiene, este agrada a Dios y es el afanado el que termina bendiciendo al que agrada a Dios.
+    Todo tiene su tiempo, todo, menos el creador del todo, el es perpetuo, sus palabras son perpetuas, 
+    tan solo el hecho de comer y beber y trabajar es bendición de Dios, Dios restaura nuestro pasado, 
+    las personas pueden ser injustas, pensando que no hay fin en hacer maldad, estos recibirán la justicia de Dios, 
+    Dios no permanece donde su Santo Espíritu es rechazado.` },
 
-La aflicción de Espíritu es hecha por la vanidad, la vanidad lleva sobreesfuerzo y la necesidad vacía de recoger y acumular.
-
-Sin embargo el que confía en Dios y agradece lo que tiene, este agrada a Dios.` },
 
 
-
-        { capitulos: "Ec. 4-6", reflexion: `` },
+        { capitulos: "Ec. 4-6", reflexion: `Las personas llenas de ira llevan dolor y tristeza, el que se afana por tener y tener 
+            no tiene más que una vida vacía y dolor. El que piensa que puede solo su orgullo, su soberbia los unde, por eso el predicador nos aconseja
+            en no caminar solos, en estar acompañado, en estar unidos primeramente con Dios y tambien con nuestros hermanos.
+            
+            A Dios no le sorprende, ni le maravilla el que habla mucho, el que se muestra ante el diciendo soy bueno o soy sin pecado, pues Dios es soberano,
+            Dios ama al humilde, al que reconoce su error, al que no alega o justifica su pecado sino que reconoce que por su voluntad a fallado.
+            
+            El hombre que tiene de más no disfruta ni agradece lo que tiene, sin embargo el que tiene lo suficiente alaba a Dios, la vanidad es aquello 
+            que sobreestimula nuestros placeres pero nos dañan, lo suficiente es lo que esta equilibrado no daña, ni destruye, es lo que Dios nos da.` },
 
 
 
