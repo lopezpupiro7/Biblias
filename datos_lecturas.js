@@ -461,11 +461,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Sal. 40-42", reflexion: "" },Logos: [""],
+        { capitulos: "Sal. 40-42", reflexion: "" },
 
 
 
-                { capitulos: "Sal. 43-45", reflexion: "" },
+        { capitulos: "Sal. 43-45", reflexion: "" },
 
 
 
@@ -604,11 +604,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Sal. 145-147", reflexion: "" },Logos: [""],
+        { capitulos: "Sal. 145-147", reflexion: "" },
 
 
 
-                { capitulos: "Sal. 148-150", reflexion: "" },
+        { capitulos: "Sal. 148-150", reflexion: "" },
 
 
 
@@ -834,11 +834,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Is. 55-57", reflexion: "" },Logos: [""],
+        { capitulos: "Is. 55-57", reflexion: "" },
 
 
 
-                { capitulos: "Is. 58-60", reflexion: "" },
+        { capitulos: "Is. 58-60", reflexion: "" },
 
 
 
@@ -921,11 +921,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Jer. 37-39", reflexion: "" },
+        { capitulos: "Jer. 37-39", reflexion: "" },Logos: [""],
 
 
 
-        { capitulos: "Jer. 40-42", reflexion: "" },
+                { capitulos: "Jer. 40-42", reflexion: "" },
 
 
 
@@ -1000,11 +1000,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "2 Cr. 17-19", reflexion: "" },Logos: [""],
+        { capitulos: "2 Cr. 17-19", reflexion: "" },
 
 
 
-                { capitulos: "2 Cr. 20-22", reflexion: "" },
+        { capitulos: "2 Cr. 20-22", reflexion: "" },
 
 
 
@@ -1032,11 +1032,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Ez. 8-11", reflexion: "" },Logos: [""],
+        { capitulos: "Ez. 8-11", reflexion: "" },
 
 
 
-                { capitulos: "Ez. 12-14", reflexion: "" },
+        { capitulos: "Ez. 12-14", reflexion: "" },
 
 
 
@@ -1207,11 +1207,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Lc. 18-21", reflexion: "" },
+        { capitulos: "Lc. 18-21", reflexion: "" },Logos: [""],
 
 
 
-        { capitulos: "Lc. 22-24", reflexion: "" },
+                { capitulos: "Lc. 22-24", reflexion: "" },
 
 
 
@@ -1477,7 +1477,6 @@ const diccionarioLecturas = {
     ]
 };
 
-// Función para llamar las lecturas y reflexiones de forma segura desde el archivo HTML externo
 function obtenerLecturaDelDia(mes, dia) {
     if (diccionarioLecturas[mes] && diccionarioLecturas[mes][dia - 1]) {
         return diccionarioLecturas[mes][dia - 1];
