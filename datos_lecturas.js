@@ -485,11 +485,7 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Sal. 58-60", reflexion: "" },
-
-
-
-        { capitulos: "", reflexion: "" }
+        { capitulos: "Sal. 58-60", reflexion: "" }
     ],
     5: [
         { capitulos: "Sal. 61-63", reflexion: "" },
@@ -842,11 +838,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Is. 61-63", reflexion: "" },
+        { capitulos: "Is. 61-63", reflexion: "" },Logos: [""],
 
 
 
-        { capitulos: "Is. 64-66", reflexion: "" },
+                { capitulos: "Is. 64-66", reflexion: "" },
 
 
 
@@ -921,11 +917,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Jer. 37-39", reflexion: "" },Logos: [""],
+        { capitulos: "Jer. 37-39", reflexion: "" },
 
 
 
-                { capitulos: "Jer. 40-42", reflexion: "" },
+        { capitulos: "Jer. 40-42", reflexion: "" },
 
 
 
@@ -996,11 +992,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "2 Cr. 14-16", reflexion: "" },
+        { capitulos: "2 Cr. 14-16", reflexion: "" },Logos: [""],
 
 
 
-        { capitulos: "2 Cr. 17-19", reflexion: "" },
+                { capitulos: "2 Cr. 17-19", reflexion: "" },
 
 
 
@@ -1207,11 +1203,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Lc. 18-21", reflexion: "" },Logos: [""],
+        { capitulos: "Lc. 18-21", reflexion: "" },
 
 
 
-                { capitulos: "Lc. 22-24", reflexion: "" },
+        { capitulos: "Lc. 22-24", reflexion: "" },
 
 
 
@@ -1242,11 +1238,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "Hch. 3-5", reflexion: "" },
+        { capitulos: "Hch. 3-5", reflexion: "" },Logos: [""],
 
 
 
-        { capitulos: "Hch. 6-9", reflexion: "" },
+                { capitulos: "Hch. 6-9", reflexion: "" },
 
 
 
