@@ -636,7 +636,11 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: 'Ec. 1-3', reflexion: '' },
+        { capitulos: 'Ec. 1-3', reflexion: `Todo es vanidad, debemos entender que todo es temporal, que solo Dios es eterno, que el afán por pensar en el mañana o acumular lo innecesario solo produce aflicción, más Dios produce paz, Dios es eterno y el hecho de buscarlo no nos llena de afán sino la seguridad de estar completos.
+
+La aflicción de Espíritu es hecha por la vanidad, la vanidad lleva sobreesfuerzo y la necesidad vacía de recoger y acumular.
+
+Sin embargo el que confía en Dios y agradece lo que tiene, este agrada a Dios.` },
 
 
 
