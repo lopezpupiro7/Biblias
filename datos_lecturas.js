@@ -841,7 +841,7 @@ const diccionarioLecturas = {
 
 
 
-                { capitulos: "Is. 64-66", reflexion: `` },
+        { capitulos: "Is. 64-66", reflexion: `` },
 
 
 
@@ -995,7 +995,7 @@ const diccionarioLecturas = {
 
 
 
-                { capitulos: "2 Cr. 17-19", reflexion: `` },
+       { capitulos: "2 Cr. 17-19", reflexion: `` },
 
 
 
@@ -1098,8 +1098,6 @@ const diccionarioLecturas = {
         { capitulos: "Esd. 1-3", reflexion: `` },
 
 
-
-        { capitulos: "`, reflexion: `` }
     ],
     10: [
         { capitulos: "Esd. 4-7", reflexion: `` },
@@ -1343,9 +1341,6 @@ const diccionarioLecturas = {
 
         { capitulos: "Ef. 1-3", reflexion: `` },
 
-
-
-        { capitulos: "`, reflexion: `` }
     ],
     12: [
         { capitulos: "Ef. 4-6", reflexion: `` },
@@ -1412,7 +1407,7 @@ const diccionarioLecturas = {
 
 
 
-        { capitulos: "2 Jn.; 3 Jn.; Jud.`, reflexion: `` },
+        { capitulos: "2 Jn.; 3 Jn.; Jud.", reflexion: `` },
 
 
 
