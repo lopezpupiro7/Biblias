@@ -6,7 +6,6 @@
     <title>Plan de Lectura Bíblica Anual</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> 
     <style>
-        /* Estilos específicos para que al imprimir o guardar en PDF salga perfecto, ocultando la interfaz del buscador */
         @media print {
             body { background-color: white !important; color: black !important; }
             .no-print { display: none !important; }
@@ -33,14 +32,11 @@
             <div class="bg-slate-850 p-6 rounded-2xl border border-slate-800 shadow-xl flex flex-col justify-between space-y-6">
                 <div>
                     <h2 class="text-lg font-bold text-blue-400 mb-4 flex items-center gap-2"><span>📅</span> Buscador de Fecha</h2>
-                    
                     <div class="mb-4 p-4 bg-slate-900/60 rounded-xl border border-slate-800">
                         <label class="block text-xs font-semibold uppercase text-slate-400 mb-2 tracking-wider">Opción 1: Calendario / Fecha</label>
                         <input type="date" id="inputFechaCompleta" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-center font-bold text-white focus:outline-none focus:border-blue-500 cursor-pointer">
                     </div>
-
                     <div class="text-center text-xs font-bold text-slate-600 my-2">O BIEN</div>
-
                     <div class="p-4 bg-slate-900/60 rounded-xl border border-slate-800 space-y-4">
                         <label class="block text-xs font-semibold uppercase text-slate-400 tracking-wider">Opción 2: Listas Desplegables</label>
                         <div>
@@ -56,7 +52,6 @@
                         </div>
                     </div>
                 </div>
-
                 <button onclick="window.print()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-indigo-950/40 transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer">
                     <span>📄</span> Descargar Plan Anual Completo (PDF)
                 </button>
@@ -66,15 +61,14 @@
                 <span class="text-xs font-bold uppercase tracking-widest text-indigo-400 bg-indigo-950/60 px-4 py-1.5 rounded-full border border-indigo-900/50">Lectura del Día</span>
                 <h3 class="text-4xl md:text-5xl font-black text-white mt-4 mb-2 tracking-tight" id="resultadoLectura">---</h3>
                 <p class="text-slate-400 text-sm font-medium mb-6" id="resultadoFecha">Cargando...</p>
-                
                 <div class="w-full text-left bg-slate-900/40 border border-slate-800/80 rounded-xl p-5 mt-2">
                     <h4 class="text-xs font-bold uppercase tracking-wider text-emerald-400 mb-2 flex items-center gap-1.5">
                         <span>💡</span> Reflexión del Pasaje
                     </h4>
                     <p class="text-slate-300 text-sm leading-relaxed italic whitespace-pre-line" id="resultadoReflexion">
-                        </p>
+                        <!-- Texto dinámico -->
+                    </p>
                 </div>
-
                 <div class="w-full text-left mt-4">
                     <label class="block text-[11px] font-semibold uppercase text-slate-500 mb-1.5 tracking-wider">
                         📝 Mis Notas y Meditación Personal:
@@ -93,7 +87,6 @@
 
     <script>
         const mesesNombres = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        
         const inputFechaCompleta = document.getElementById('inputFechaCompleta');
         const selectMes = document.getElementById('selectMes');
         const selectDia = document.getElementById('selectDia');
@@ -119,12 +112,7 @@
 
         function renderizarLectura(dia, mes) {
             const nombreMes = mesesNombres[mes - 1];
-            
-            if (typeof obtenerLecturaDelDia !== 'function') {
-                resultadoLectura.innerText = "---";
-                resultadoReflexion.innerText = "Error cargando la base de datos externa.";
-                return;
-            }
+            if (typeof obtenerLecturaDelDia !== 'function') return;
 
             const itemLectura = obtenerLecturaDelDia(mes, dia);
             notasUsuario.value = ""; 
@@ -177,7 +165,6 @@
                 <p style="font-size: 10px; italic; color: #718096; max-w: 600px; margin: 5px auto;">“Vivir como una familia unánime que glorifica a Jesucristo ganando almas para que se conviertan en miembros maduros y ministros fieles”</p>
             </div>`;
 
-            // SECCIÓN 1er Semestre: Enero a Junio
             html += `<h2 style="color: #1b365d; border-bottom: 2px solid #1b365d; margin-top: 20px; font-size: 14px; font-weight: bold;">PRIMER SEMESTRE (ENERO - JUNIO)</h2>
             <table style="width: 100%; border-collapse: collapse; font-size: 9px; margin-top: 5px; margin-bottom: 30px;">
                 <thead><tr style="background-color: #1b365d; color: white;"><th style="border: 1px solid #cbcbcb; padding: 4px; text-align: center; width: 5%;">Día</th>`;
@@ -193,7 +180,6 @@
             }
             html += `</tbody></table><div class="page-break"></div>`;
 
-            // SECCIÓN 2do Semestre: Julio a Diciembre
             html += `<div style="text-align: center; margin-bottom: 20px;" class="print-only-header">
                 <h1 style="color: #1b365d; font-size: 24px; font-weight: bold;">Iglesia Evangélica Pentecostal Salem</h1>
             </div>
@@ -215,7 +201,6 @@
             container.innerHTML = html;
         }
 
-        // Ejecución limpia una vez que los archivos JS están cargados en memoria
         window.addEventListener('load', () => {
             const hoy = new Date();
             selectMes.value = hoy.getMonth() + 1;
